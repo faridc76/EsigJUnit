@@ -2,9 +2,9 @@ package fr.esigelec.tpjunit;
 
 import java.util.*;
 public class DateGSI {
-	int jour;
-	int mois;
-	int annee;
+	int jour;//La valeur du jour
+	int mois;//Valeur du mois
+	int annee;//Valeur de l'annéé	
 	
 	public DateGSI(int jour, int mois, int annee) throws IllegalArgumentException {
 		if (jour < 1) {
@@ -34,7 +34,29 @@ public class DateGSI {
 		return new DateGSI(calendar.get(Calendar.DATE),calendar.get(Calendar.MONTH) + 1,calendar.get(Calendar.YEAR)) ;
 	}
 	public boolean equals(Object o) {
-		return (this.toString() == ((DateGSI) o).toString());
+		//Vérification de l'égalité des références
+		if (o == this) {
+			return true;
+		}
+		//On test le type du parametre
+		if (o instanceof DateGSI) {
+			DateGSI other = (DateGSI) o;
+			
+			//On test directement les valeur, si une delle est differente
+			//dune classe à l'autre c'est que les classes ne sont pas identiques
+			if (other.jour != this.jour) {
+				return false;
+			}
+			if (other.mois != this.mois) {
+				return false;
+			}
+			if (other.annee != this.annee) {
+				return false;
+			}
+			//Si on arrive ici c'est que toute les valeurs sont égale
+			return true;
+		}
+		return false;
 	}
 	
 	public String toString() {
